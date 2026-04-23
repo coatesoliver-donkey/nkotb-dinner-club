@@ -1,0 +1,2328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>NKOTB Dinner Club · Ottawa</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎤</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Oswald:wght@400;700&family=Caveat:wght@500;700&family=Patrick+Hand&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #ff2e88;
+    --pink-soft: #ff88c8;
+    --teal: #00d4ff;
+    --teal-soft: #7aeaff;
+    --gold: #ffe600;
+    --night: #0a0a14;
+    --night-2: #141022;
+    --night-3: #1b1430;
+    --cream: #faf4e8;
+    --ink: #0f0f14;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #000;
+    color: var(--cream);
+    line-height: 1.5;
+    position: relative;
+    padding-bottom: 80px;
+  }
+
+  body.intro-playing {
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  /* ==========================================================
+     INTRO OVERLAY
+     ========================================================== */
+  .intro {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    animation: introFadeOut 1.2s ease-out 44.9s forwards;
+  }
+  @keyframes introFadeOut {
+    to { opacity: 0; visibility: hidden; }
+  }
+
+  .spotlight-flicker {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(255,230,0,0.15) 0%, transparent 30%);
+    opacity: 0;
+    animation: flicker 0.8s steps(4) 0.2s forwards;
+  }
+  @keyframes flicker {
+    0%   { opacity: 0; }
+    25%  { opacity: 0.8; }
+    50%  { opacity: 0.3; }
+    75%  { opacity: 0.9; }
+    100% { opacity: 0.5; }
+  }
+
+  /* ===== OPENING NARRATION ===== */
+  .narration {
+    position: relative;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    color: var(--cream);
+    letter-spacing: 6px;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    text-transform: uppercase;
+  }
+  .narration-group {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(90vw, 800px);
+    opacity: 0;
+  }
+  /* First group (lines 1-4) is visible from 0s to ~13s */
+  .narration-group.group-1 {
+    animation: groupFade 0.6s ease-out 2.0s forwards;
+  }
+  /* Second group (lines 5-7) fades in at 13.0s */
+  .narration-group.group-2 {
+    animation: groupFade 0.6s ease-out 13.0s forwards;
+  }
+  @keyframes groupFade { to { opacity: 1; } }
+
+  .narration-line {
+    opacity: 0;
+    display: block;
+    margin: 24px 0;
+  }
+  .narration-line.l1 { animation: narrIn 0.6s ease-out 2.5s forwards, narrOut 0.6s ease-in 4.5s forwards; }
+  .narration-line.l2 { animation: narrIn 0.6s ease-out 5.0s forwards, narrOut 0.6s ease-in 7.0s forwards; }
+  .narration-line.l3 { animation: narrIn 0.6s ease-out 7.5s forwards, narrOut 0.6s ease-in 10.0s forwards; }
+  .narration-line.l4 { animation: narrIn 0.6s ease-out 10.5s forwards, narrOut 0.6s ease-in 12.5s forwards; }
+  .narration-line.l5 { animation: narrIn 0.6s ease-out 13.5s forwards, narrOut 0.6s ease-in 15.0s forwards; }
+  .narration-line.l6 {
+    animation: narrIn 0.6s ease-out 15.5s forwards, narrOut 0.6s ease-in 17.5s forwards;
+    color: var(--teal);
+    text-shadow: 0 0 20px rgba(0,212,255,0.6);
+  }
+  .narration-line.l7 {
+    animation: narrIn 0.6s ease-out 18.0s forwards, narrOut 0.6s ease-in 20.5s forwards;
+    color: var(--pink);
+    text-shadow: 0 0 20px rgba(255,46,136,0.6);
+    font-size: clamp(1.1rem, 2.2vw, 1.7rem);
+  }
+  @keyframes narrIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes narrOut {
+    to   { opacity: 0; transform: translateY(-10px); }
+  }
+
+  /* ===== FLASH + SHOCKWAVE + WORDMARK ===== */
+  .flash {
+    position: absolute;
+    inset: 0;
+    background: #fff;
+    opacity: 0;
+    animation: flashBang 0.4s ease-out 21.1s forwards;
+  }
+  @keyframes flashBang {
+    0%   { opacity: 0; }
+    20%  { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  .shockwave {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    border: 3px solid var(--pink);
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+    animation: shockwave 1.2s ease-out 21.2s forwards;
+  }
+  .shockwave.teal {
+    border-color: var(--teal);
+    animation-delay: 21.35s;
+  }
+  @keyframes shockwave {
+    0%   { transform: translate(-50%, -50%) scale(0); opacity: 1; border-width: 8px; }
+    100% { transform: translate(-50%, -50%) scale(180); opacity: 0; border-width: 1px; }
+  }
+
+  .intro-wordmark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+    animation: wordmarkCrash 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 21.1s forwards,
+               wordmarkFadeOut 0.6s ease-in 22.8s forwards;
+  }
+  .intro-wordmark-main {
+    font-family: 'Alfa Slab One', serif;
+    font-size: clamp(4rem, 14vw, 10rem);
+    letter-spacing: clamp(4px, 1vw, 10px);
+    line-height: 0.9;
+    background: linear-gradient(180deg, #ffffff 0%, #c0c0d0 40%, #5a6a80 50%, #ffffff 52%, #ffd6ea 72%, var(--pink-soft) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(6px 6px 0 var(--pink)) drop-shadow(-6px -6px 0 var(--teal));
+    margin-bottom: 8px;
+  }
+  .intro-wordmark-sub {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.3rem, 2.8vw, 2.2rem);
+    letter-spacing: clamp(0.4em, 1vw, 0.8em);
+    background: linear-gradient(90deg, var(--teal), var(--pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-left: 0.8em;
+    opacity: 0;
+    animation: introSubIn 0.6s ease-out 21.8s forwards;
+  }
+  @keyframes introSubIn { to { opacity: 1; } }
+  @keyframes wordmarkCrash {
+    0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.3) rotate(-5deg); }
+    60%  { opacity: 1; transform: translate(-50%, -50%) scale(1.15) rotate(2deg); }
+    80%  { transform: translate(-50%, -50%) scale(0.95) rotate(-1deg); }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0); }
+  }
+  @keyframes wordmarkFadeOut {
+    to { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+  }
+
+  .intro-screen {
+    position: relative;
+    text-align: center;
+  }
+
+  /* ==========================================================
+     INTRODUCING... title card
+     ========================================================== */
+  .introducing {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Alfa Slab One', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    letter-spacing: clamp(4px, 1.5vw, 14px);
+    background: linear-gradient(90deg, var(--gold), var(--pink-soft), var(--gold));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    animation: introducingIn 0.6s ease-out 23.3s forwards,
+               introducingOut 0.5s ease-in 24.8s forwards;
+    text-transform: uppercase;
+  }
+  @keyframes introducingIn {
+    from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+    to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  }
+  @keyframes introducingOut {
+    to { opacity: 0; transform: translate(-50%, -50%) scale(1.3); }
+  }
+
+  /* ==========================================================
+     ROLL-CALL CARDS
+     ========================================================== */
+  .rollcall {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: min(90vw, 420px);
+  }
+
+  .rc-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateX(120vw) rotate(20deg);
+    width: 100%;
+    opacity: 0;
+  }
+
+  .rc-polaroid {
+    position: relative;
+    background: var(--cream);
+    padding: 14px 14px 48px;
+    box-shadow:
+      0 25px 60px rgba(255,46,136,0.4),
+      0 0 0 1px rgba(255,255,255,0.1),
+      0 10px 30px rgba(0,0,0,0.6);
+    margin: 0 auto;
+    max-width: 320px;
+  }
+  .rc-polaroid img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+    background: #ddd;
+  }
+
+  /* Descriptor lines ABOVE the polaroid */
+  .rc-descriptors {
+    position: absolute;
+    bottom: calc(100% + 20px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .rc-descriptors .d-tag {
+    display: block;
+    opacity: 0;
+    color: var(--cream);
+    font-size: clamp(0.9rem, 1.8vw, 1.3rem);
+    letter-spacing: clamp(2px, 0.5vw, 6px);
+    margin-bottom: 4px;
+  }
+  .rc-descriptors .d-name {
+    display: block;
+    opacity: 0;
+    font-family: 'Alfa Slab One', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    letter-spacing: clamp(3px, 0.8vw, 8px);
+    background: linear-gradient(90deg, var(--pink), var(--teal));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: 6px;
+    filter: drop-shadow(0 0 20px rgba(255,46,136,0.4));
+  }
+
+  /* --- Roll-call keyframes --- */
+  @keyframes rcFlyIn {
+    0%   { opacity: 0; transform: translate(-50%, -50%) translateX(120vw) rotate(20deg) scale(0.8); }
+    60%  { opacity: 1; transform: translate(-50%, -50%) translateX(-10px) rotate(-3deg) scale(1.05); }
+    100% { opacity: 1; transform: translate(-50%, -50%) translateX(0) rotate(-2deg) scale(1); }
+  }
+  @keyframes rcFlyOut {
+    0%   { opacity: 1; transform: translate(-50%, -50%) translateX(0) rotate(-2deg) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) translateX(-120vw) rotate(-20deg) scale(0.8); }
+  }
+  @keyframes dTagIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes dNameIn {
+    0%   { opacity: 0; transform: scale(0.8); }
+    50%  { opacity: 1; transform: scale(1.1); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  /* Per-card timing - each card gets ~4 seconds total */
+  /* Card 1: Nadia  - starts 25.0s */
+  .rc-card.rc-1 { animation: rcFlyIn 0.7s cubic-bezier(0.25, 1.4, 0.5, 1) 25.0s forwards, rcFlyOut 0.5s ease-in 28.4s forwards; }
+  .rc-card.rc-1 .d-tag:nth-of-type(1) { animation: dTagIn 0.4s ease-out 25.5s forwards; }
+  .rc-card.rc-1 .d-tag:nth-of-type(2) { animation: dTagIn 0.4s ease-out 26.0s forwards; }
+  .rc-card.rc-1 .d-name { animation: dNameIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 26.6s forwards; }
+
+  /* Card 2: Klaus  - starts 29.0s */
+  .rc-card.rc-2 { animation: rcFlyIn 0.7s cubic-bezier(0.25, 1.4, 0.5, 1) 29.0s forwards, rcFlyOut 0.5s ease-in 32.4s forwards; }
+  .rc-card.rc-2 .d-tag:nth-of-type(1) { animation: dTagIn 0.4s ease-out 29.5s forwards; }
+  .rc-card.rc-2 .d-tag:nth-of-type(2) { animation: dTagIn 0.4s ease-out 30.0s forwards; }
+  .rc-card.rc-2 .d-name { animation: dNameIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 30.6s forwards; }
+
+  /* Card 3: Olaf   - starts 33.0s */
+  .rc-card.rc-3 { animation: rcFlyIn 0.7s cubic-bezier(0.25, 1.4, 0.5, 1) 33.0s forwards, rcFlyOut 0.5s ease-in 36.4s forwards; }
+  .rc-card.rc-3 .d-tag:nth-of-type(1) { animation: dTagIn 0.4s ease-out 33.5s forwards; }
+  .rc-card.rc-3 .d-tag:nth-of-type(2) { animation: dTagIn 0.4s ease-out 34.0s forwards; }
+  .rc-card.rc-3 .d-name { animation: dNameIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 34.6s forwards; }
+
+  /* Card 4: Tallulah - starts 37.0s */
+  .rc-card.rc-4 { animation: rcFlyIn 0.7s cubic-bezier(0.25, 1.4, 0.5, 1) 37.0s forwards, rcFlyOut 0.5s ease-in 40.4s forwards; }
+  .rc-card.rc-4 .d-tag:nth-of-type(1) { animation: dTagIn 0.4s ease-out 37.5s forwards; }
+  .rc-card.rc-4 .d-tag:nth-of-type(2) { animation: dTagIn 0.4s ease-out 38.0s forwards; }
+  .rc-card.rc-4 .d-name { animation: dNameIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 38.6s forwards; }
+
+  /* Card 5: Boris  - starts 41.0s */
+  .rc-card.rc-5 { animation: rcFlyIn 0.7s cubic-bezier(0.25, 1.4, 0.5, 1) 41.0s forwards, rcFlyOut 0.5s ease-in 44.4s forwards; }
+  .rc-card.rc-5 .d-tag:nth-of-type(1) { animation: dTagIn 0.4s ease-out 41.5s forwards; }
+  .rc-card.rc-5 .d-tag:nth-of-type(2) { animation: dTagIn 0.4s ease-out 42.0s forwards; }
+  .rc-card.rc-5 .d-name { animation: dNameIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 42.6s forwards; }
+
+  /* Intro fadeout at 21.8s is set in the .intro rule above */
+
+  /* ==========================================================
+     MAIN BACKGROUND
+     ========================================================== */
+  .main-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    opacity: 0;
+    animation: mainBgIn 1.2s ease-out 44.6s forwards;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(255, 46, 136, 0.25) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 30%, rgba(0, 212, 255, 0.22) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 100%, rgba(255, 46, 136, 0.15) 0%, transparent 60%),
+      linear-gradient(180deg, #1a0a24 0%, #0a0a14 100%);
+  }
+  @keyframes mainBgIn { to { opacity: 1; } }
+
+  .main-stars {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    opacity: 0;
+    animation: mainStarsIn 1s ease-out 45.1s forwards;
+    pointer-events: none;
+    background-image:
+      radial-gradient(1.5px 1.5px at 15% 20%, var(--cream) 1px, transparent 1px),
+      radial-gradient(1px 1px at 85% 15%, var(--cream) 1px, transparent 1px),
+      radial-gradient(1.5px 1.5px at 40% 80%, var(--gold) 1px, transparent 1px),
+      radial-gradient(1px 1px at 90% 60%, var(--cream) 1px, transparent 1px),
+      radial-gradient(1px 1px at 10% 60%, var(--cream) 1px, transparent 1px),
+      radial-gradient(1.2px 1.2px at 60% 10%, var(--gold) 1px, transparent 1px),
+      radial-gradient(1px 1px at 75% 85%, var(--cream) 1px, transparent 1px),
+      radial-gradient(1px 1px at 25% 45%, var(--cream) 1px, transparent 1px);
+    background-size: 900px 900px;
+  }
+  @keyframes mainStarsIn { to { opacity: 0.35; } }
+
+  /* ==========================================================
+     MAIN CONTENT - retimed to after roll-call
+     ========================================================== */
+  .wrap {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 24px 0;
+    opacity: 0;
+    animation: wrapIn 1s ease-out 44.9s forwards;
+  }
+  @keyframes wrapIn { to { opacity: 1; } }
+
+  .kicker {
+    text-align: center;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease-out 45.1s forwards;
+  }
+  .kicker-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 16px;
+    border: 1px solid var(--teal);
+    border-radius: 2px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 5px;
+    color: var(--teal);
+    text-shadow: 0 0 12px rgba(0,212,255,0.5);
+  }
+  .kicker-pill .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 0 10px var(--teal);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero {
+    text-align: center;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease-out 44.9s forwards;
+  }
+  .wordmark-wrap {
+    position: relative;
+    display: inline-block;
+  }
+  .wordmark {
+    font-family: 'Alfa Slab One', serif;
+    font-size: clamp(4rem, 12vw, 8.5rem);
+    letter-spacing: clamp(3px, 0.8vw, 8px);
+    line-height: 0.9;
+    background: linear-gradient(180deg, #ffffff 0%, #c0c0d0 40%, #5a6a80 50%, #ffffff 52%, #ffd6ea 72%, var(--pink-soft) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(5px 5px 0 var(--pink)) drop-shadow(-5px -5px 0 var(--teal));
+    margin-bottom: 10px;
+  }
+  .wordmark-scribble {
+    position: absolute;
+    left: 17%;
+    bottom: -0.15em;
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 2px;
+    color: var(--gold);
+    pointer-events: none;
+    transform: rotate(-3deg);
+  }
+  .scribble-s {
+    font-family: 'Patrick Hand', cursive;
+    font-weight: 400;
+    font-size: clamp(1.1rem, 2.2vw, 1.7rem);
+    line-height: 1;
+    filter: drop-shadow(0 0 6px rgba(255, 230, 0, 0.4));
+  }
+  .scribble-arrow {
+    width: clamp(18px, 1.8vw, 28px);
+    height: auto;
+    margin-bottom: 2px;
+    filter: drop-shadow(0 0 4px rgba(255, 230, 0, 0.3));
+  }
+  .wordmark-sub {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.1rem, 2.3vw, 1.8rem);
+    letter-spacing: clamp(0.3em, 0.8vw, 0.7em);
+    background: linear-gradient(90deg, var(--teal), var(--pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-left: 0.7em;
+    opacity: 0;
+    animation: fadeUp 0.6s ease-out 45.4s forwards;
+  }
+
+  /* ===== WAIT-TO-BE-SEATED BANNER (brass placard + construction tape frame) ===== */
+  .construction-banner {
+    position: relative;
+    max-width: 520px;
+    margin: 18px auto 28px;
+    /* Full perimeter hazard tape frame */
+    background: repeating-linear-gradient(
+      -45deg,
+      #ffe600 0, #ffe600 16px,
+      #0f0f14 16px, #0f0f14 32px
+    );
+    padding: 12px;
+    border-radius: 3px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease-out 45.8s forwards;
+    box-shadow: 0 0 30px rgba(255, 230, 0, 0.18);
+  }
+  .construction-banner-inner {
+    background:
+      linear-gradient(180deg,
+        rgba(255, 230, 180, 0.18) 0%,
+        rgba(255, 210, 140, 0.10) 40%,
+        rgba(180, 130, 60, 0.12) 100%),
+      linear-gradient(135deg, #1a0a24 0%, #0a0a14 100%);
+    border: 2px solid #c9a362;
+    border-radius: 2px;
+    padding: 24px 30px;
+    text-align: center;
+    position: relative;
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 220, 150, 0.25),
+      0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+  /* Brass rivets in all four corners of the placard */
+  .construction-banner-inner::before,
+  .construction-banner-inner::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle at 30% 30%, #ffe0a0, #8a6020);
+    border-radius: 50%;
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.6);
+  }
+  .construction-banner-inner::before { top: 10px; left: 10px; }
+  .construction-banner-inner::after  { top: 10px; right: 10px; }
+  .rivet {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle at 30% 30%, #ffe0a0, #8a6020);
+    border-radius: 50%;
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.6);
+    z-index: 3;
+  }
+  .rivet.bl { bottom: 10px; left: 10px; }
+  .rivet.br { bottom: 10px; right: 10px; }
+
+  .construction-kicker {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 0.62rem;
+    letter-spacing: 6px;
+    color: #c9a362;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 2;
+  }
+  .construction-main {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 1.9rem;
+    background: linear-gradient(180deg, #fff8d9 0%, #d9b374 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+    line-height: 1.1;
+    position: relative;
+    z-index: 2;
+  }
+  .construction-sub-line {
+    font-family: 'Caveat', cursive;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: rgba(255, 220, 180, 0.6);
+    margin-top: 10px;
+    font-style: italic;
+    position: relative;
+    z-index: 2;
+  }
+
+  @media (max-width: 520px) {
+    .construction-banner {
+      margin: 12px 12px 20px;
+      padding: 8px;
+    }
+    .construction-banner-inner {
+      padding: 20px 20px;
+    }
+    .construction-main {
+      font-size: 1.5rem;
+    }
+    .construction-sub-line {
+      font-size: 0.85rem;
+    }
+  }
+
+  .tableready {
+    text-align: center;
+    margin: 30px auto 30px;
+    max-width: 760px;
+  }
+  .tableready-kicker {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 5px;
+    color: var(--gold);
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease-out 46.1s forwards;
+  }
+  .tableready-headline {
+    font-family: 'Alfa Slab One', serif;
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    line-height: 1.1;
+    color: var(--cream);
+    letter-spacing: 1px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease-out 46.3s forwards;
+  }
+  .tableready-headline em {
+    font-style: normal;
+    background: linear-gradient(90deg, var(--pink), var(--teal));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .tableready-sub {
+    margin-top: 20px;
+    font-family: 'Caveat', cursive;
+    font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+    color: rgba(250,244,232,0.8);
+    font-weight: 500;
+    opacity: 0;
+    animation: fadeUp 0.8s ease-out 46.7s forwards;
+  }
+  .tableready-sub em {
+    color: var(--pink-soft);
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  /* ==========================================================
+     TOUR POSTER
+     ========================================================== */
+  .poster-section {
+    position: relative;
+    max-width: 1000px;
+    margin: 40px auto 60px;
+    padding: 0 20px;
+  }
+  .poster {
+    position: relative;
+    background: var(--cream);
+    padding: 40px 30px 50px;
+    border-radius: 2px;
+    box-shadow:
+      0 30px 80px rgba(0,0,0,0.7),
+      0 0 0 1px rgba(255,255,255,0.1),
+      inset 0 0 0 8px var(--ink),
+      inset 0 0 0 12px var(--cream),
+      inset 0 0 0 14px var(--pink);
+    overflow: hidden;
+    opacity: 0;
+    transform: scale(0.85) rotate(-1deg);
+    animation: posterIn 1.2s cubic-bezier(0.34, 1.4, 0.64, 1) 47.1s forwards;
+  }
+  @keyframes posterIn {
+    to { opacity: 1; transform: scale(1) rotate(-0.5deg); }
+  }
+
+  .poster::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(255,46,136,0.08) 2px, transparent 3px),
+      radial-gradient(circle at 80% 70%, rgba(0,212,255,0.08) 2px, transparent 3px);
+    background-size: 40px 40px, 50px 50px;
+    pointer-events: none;
+    opacity: 0.8;
+  }
+
+  .poster-staple {
+    position: absolute;
+    width: 20px;
+    height: 5px;
+    background: linear-gradient(90deg, #888 0%, #ccc 50%, #888 100%);
+    border: 1px solid #666;
+    border-radius: 1px;
+    z-index: 3;
+  }
+  .poster-staple.tl { top: 18px; left: 30px; transform: rotate(-8deg); }
+  .poster-staple.tr { top: 20px; right: 32px; transform: rotate(6deg); }
+
+  .poster-kicker {
+    position: relative;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 8px;
+    color: var(--ink);
+    padding: 8px 0;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+    margin-bottom: 30px;
+  }
+  .poster-kicker .star {
+    color: var(--pink);
+    margin: 0 12px;
+  }
+
+  .poster-date {
+    position: relative;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .poster-month {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: 0.4em;
+    color: var(--pink);
+    line-height: 1;
+    padding-left: 0.4em;
+  }
+  .poster-day {
+    font-family: 'Alfa Slab One', serif;
+    font-size: clamp(6rem, 16vw, 11rem);
+    line-height: 0.85;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    text-shadow: 6px 6px 0 var(--pink), 10px 10px 0 var(--teal);
+    margin: 0;
+  }
+  .poster-year {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    letter-spacing: 0.5em;
+    color: var(--ink);
+    padding-left: 0.5em;
+    margin-top: 4px;
+  }
+
+  .poster-tourname {
+    position: relative;
+    text-align: center;
+    margin: 0 auto 30px;
+    padding: 12px 20px;
+    background: var(--ink);
+    color: var(--gold);
+    max-width: 600px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    letter-spacing: 5px;
+  }
+  .poster-tourname::before,
+  .poster-tourname::after {
+    content: '★';
+    color: var(--pink);
+    margin: 0 12px;
+  }
+
+  .poster-venue {
+    position: relative;
+    text-align: center;
+    margin: 26px 0 14px;
+  }
+  .poster-venue-split {
+    display: inline-flex;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    letter-spacing: 0.18em;
+    line-height: 1;
+  }
+  .poster-venue-split .half-pink {
+    background: var(--pink);
+    color: var(--cream);
+    padding: 10px 14px 10px 18px;
+  }
+  .poster-venue-split .half-teal {
+    background: var(--teal);
+    color: var(--ink);
+    padding: 10px 18px 10px 14px;
+  }
+  .poster-city {
+    position: relative;
+    text-align: center;
+    margin: 22px 0 30px;
+    padding: 0;
+  }
+  .poster-guest-label {
+    display: inline-block;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 5px;
+    color: var(--ink);
+    padding: 0 4px;
+  }
+  .poster-guest-label .star {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 1.1em;
+    vertical-align: middle;
+    transform: translateY(-1px);
+  }
+  .poster-guest-label .star-pink  { color: var(--pink); }
+  .poster-guest-label .star-teal  { color: var(--teal); }
+  .poster-guest-label .star-gold  { color: var(--gold); filter: drop-shadow(0 0 1px rgba(0,0,0,0.4)); }
+  .poster-guest-name {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+  }
+  .poster-guest-name img {
+    display: inline-block;
+    width: 85%;
+    max-width: 500px;
+    height: auto;
+    /* Pop the red against our pastel poster — subtle angle like a stuck-on sticker */
+    transform: rotate(-1.5deg);
+    filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.15));
+  }
+
+  .poster-divider {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 26px 0 26px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 6px;
+    color: var(--ink);
+  }
+  .poster-divider::before,
+  .poster-divider::after {
+    content: '';
+    flex: 1;
+    max-width: 80px;
+    height: 2px;
+    background: var(--ink);
+  }
+
+  .lineup {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+  @media (max-width: 800px) {
+    .lineup {
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+    }
+  }
+
+  /* ==========================================================
+     MOBILE POSTER OPTIMIZATION — comprehensive sweep for phones
+     ========================================================== */
+  @media (max-width: 520px) {
+    .poster-section {
+      padding: 0 12px;
+      margin: 20px auto 40px;
+    }
+    .poster {
+      padding: 28px 16px 32px;
+      box-shadow:
+        0 20px 50px rgba(0,0,0,0.7),
+        0 0 0 1px rgba(255,255,255,0.1),
+        inset 0 0 0 5px var(--ink),
+        inset 0 0 0 8px var(--cream),
+        inset 0 0 0 9px var(--pink);
+    }
+    .poster-staple.tl { top: 12px; left: 18px; }
+    .poster-staple.tr { top: 14px; right: 20px; }
+
+    .poster-kicker {
+      font-size: 0.65rem;
+      letter-spacing: 4px;
+      padding: 6px 0;
+      border-top-width: 2px;
+      border-bottom-width: 2px;
+      margin-bottom: 20px;
+    }
+    .poster-kicker .star {
+      margin: 0 6px;
+    }
+
+    .poster-month {
+      font-size: 1.6rem;
+      letter-spacing: 0.3em;
+    }
+    .poster-day {
+      font-size: 5.5rem;
+      text-shadow: 4px 4px 0 var(--pink), 7px 7px 0 var(--teal);
+    }
+    .poster-year {
+      font-size: 1rem;
+      letter-spacing: 0.4em;
+    }
+
+    .poster-tourname {
+      margin: 0 auto 22px;
+      padding: 10px 12px;
+      font-size: 0.72rem;
+      letter-spacing: 3px;
+    }
+    .poster-tourname::before,
+    .poster-tourname::after {
+      margin: 0 6px;
+    }
+
+    .poster-venue {
+      margin: 20px 0 12px;
+    }
+    .poster-venue-split {
+      font-size: 1.4rem;
+      letter-spacing: 0.15em;
+    }
+    .poster-venue-split .half-pink {
+      padding: 8px 10px 8px 14px;
+    }
+    .poster-venue-split .half-teal {
+      padding: 8px 14px 8px 10px;
+    }
+    .poster-city {
+      margin: 18px 0 24px;
+    }
+    .poster-guest-label {
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+    }
+    .poster-guest-label .star {
+      margin: 0 5px;
+    }
+    .poster-guest-name img {
+      width: 95%;
+    }
+
+    .poster-divider {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      margin: 28px 0 24px;
+      gap: 10px;
+    }
+    .poster-divider::before,
+    .poster-divider::after {
+      max-width: 40px;
+    }
+
+    .lineup {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    /* Boris is the 5th card — make him span both columns and center him */
+    .lineup .seat:nth-child(5) {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: calc(50% - 10px);
+    }
+
+    .poster-footer {
+      font-size: 0.6rem;
+      letter-spacing: 2px;
+      padding-top: 16px;
+    }
+  }
+
+  /* ==========================================================
+     TOUR POSTER POLAROIDS - retimed to after roll-call
+     They drop in starting ~18s (overlapping the final roll-call
+     cards so the poster fills just as Boris is wrapping up)
+     ========================================================== */
+  .seat {
+    position: relative;
+    background: #fff;
+    padding: 8px 8px 16px;
+    border-radius: 1px;
+    box-shadow:
+      0 8px 20px rgba(0,0,0,0.25),
+      0 2px 4px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    /* Prevent mobile tap side effects that were causing the card to disappear */
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+  }
+  .seat:active,
+  .seat:focus {
+    outline: none;
+  }
+
+  @keyframes seatDrop-1 {
+    0%   { opacity: 0; transform: translateY(-400px) rotate(-25deg) scale(1.2); }
+    60%  { opacity: 1; transform: translateY(15px) rotate(-4deg) scale(1); }
+    75%  { transform: translateY(-6px) rotate(-4deg) scale(1); }
+    100% { opacity: 1; transform: translateY(0) rotate(-4deg) scale(1); }
+  }
+  @keyframes seatDrop-2 {
+    0%   { opacity: 0; transform: translateY(-400px) rotate(15deg) scale(1.2); }
+    60%  { opacity: 1; transform: translateY(15px) rotate(2deg) scale(1); }
+    75%  { transform: translateY(-10px) rotate(2deg) scale(1); }
+    100% { opacity: 1; transform: translateY(-4px) rotate(2deg) scale(1); }
+  }
+  @keyframes seatDrop-3 {
+    0%   { opacity: 0; transform: translateY(-400px) rotate(-10deg) scale(1.2); }
+    60%  { opacity: 1; transform: translateY(15px) rotate(-1deg) scale(1); }
+    75%  { transform: translateY(-14px) rotate(-1deg) scale(1); }
+    100% { opacity: 1; transform: translateY(-8px) rotate(-1deg) scale(1); }
+  }
+  @keyframes seatDrop-4 {
+    0%   { opacity: 0; transform: translateY(-400px) rotate(20deg) scale(1.2); }
+    60%  { opacity: 1; transform: translateY(15px) rotate(3deg) scale(1); }
+    75%  { transform: translateY(-8px) rotate(3deg) scale(1); }
+    100% { opacity: 1; transform: translateY(-2px) rotate(3deg) scale(1); }
+  }
+  @keyframes seatDrop-5 {
+    0%   { opacity: 0; transform: translateY(-400px) rotate(-18deg) scale(1.2); }
+    60%  { opacity: 1; transform: translateY(15px) rotate(-3deg) scale(1); }
+    75%  { transform: translateY(-5px) rotate(-3deg) scale(1); }
+    100% { opacity: 1; transform: translateY(0) rotate(-3deg) scale(1); }
+  }
+
+  .seat:nth-child(1) { animation: seatDrop-1 0.9s cubic-bezier(0.34, 1.3, 0.64, 1) 48.2s forwards; z-index: 2; }
+  .seat:nth-child(2) { animation: seatDrop-2 0.9s cubic-bezier(0.34, 1.3, 0.64, 1) 48.6s forwards; z-index: 3; }
+  .seat:nth-child(3) { animation: seatDrop-3 0.9s cubic-bezier(0.34, 1.3, 0.64, 1) 49.0s forwards; z-index: 4; }
+  .seat:nth-child(4) { animation: seatDrop-4 0.9s cubic-bezier(0.34, 1.3, 0.64, 1) 49.4s forwards; z-index: 3; }
+  .seat:nth-child(5) { animation: seatDrop-5 0.9s cubic-bezier(0.34, 1.3, 0.64, 1) 49.8s forwards; z-index: 2; }
+
+  @media (hover: hover) {
+    .seat:hover {
+      transform: rotate(0) translateY(-16px) scale(1.08) !important;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 25px rgba(255,46,136,0.4);
+      z-index: 10;
+      animation: none;
+    }
+  }
+
+  .seat img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+    background: #eee;
+    pointer-events: none;
+  }
+  .seat-name {
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--ink);
+    text-align: center;
+    margin-top: 6px;
+    line-height: 1;
+  }
+  .seat-tape {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+    width: 60px;
+    height: 18px;
+    background: rgba(255,230,0,0.55);
+    border: 1px solid rgba(200,180,0,0.3);
+  }
+  .seat:nth-child(2) .seat-tape { transform: translateX(-50%) rotate(2deg); }
+  .seat:nth-child(4) .seat-tape { transform: translateX(-50%) rotate(4deg); }
+
+  .poster-footer {
+    position: relative;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: var(--ink);
+    padding-top: 20px;
+    border-top: 1px dashed rgba(15,15,20,0.3);
+    opacity: 0.6;
+  }
+  .poster-footer strong {
+    color: var(--pink);
+    font-weight: 700;
+    opacity: 1;
+  }
+
+  /* ==========================================================
+     FAKE MERCH SECTION — concert tee gallery (8 SKUs, flip-on-tap)
+     ========================================================== */
+  .merch-section {
+    position: relative;
+    max-width: 1100px;
+    margin: 60px auto 0;
+    padding: 30px 16px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0;
+    animation: fadeUp 0.8s ease-out 50.3s forwards;
+  }
+  .merch-header {
+    margin-bottom: 12px;
+    padding: 0 20px;
+  }
+  .merch-kicker {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 5px;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .merch-title {
+    font-family: 'Alfa Slab One', serif;
+    font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+    letter-spacing: 1px;
+    margin: 0 0 8px;
+    background: linear-gradient(90deg, var(--pink), var(--teal));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .merch-sub {
+    font-family: 'Caveat', cursive;
+    font-size: clamp(1rem, 1.6vw, 1.3rem);
+    color: rgba(250, 244, 232, 0.7);
+    font-weight: 500;
+    margin: 0;
+  }
+  .merch-hint {
+    margin-top: 12px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: rgba(250, 244, 232, 0.45);
+  }
+
+  /* The horizontal scroll container */
+  .merch-gallery-wrap {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .merch-gallery {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 8px 50%;          /* huge side padding so first/last cards can center */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .merch-gallery::-webkit-scrollbar { display: none; }
+
+  /* Each tee card */
+  .tee-card {
+    flex: 0 0 auto;
+    width: 220px;
+    scroll-snap-align: center;
+    perspective: 1000px;
+    cursor: pointer;
+  }
+  @media (min-width: 700px) {
+    .tee-card { width: 240px; }
+  }
+  @media (min-width: 1000px) {
+    .merch-gallery { padding: 20px 80px; }
+    .tee-card { width: 260px; scroll-snap-align: start; }
+  }
+
+  /* The flippable inner wrapper */
+  .tee-card-inner {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 5/6;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .tee-card.flipped .tee-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .tee-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .tee-face.back {
+    transform: rotateY(180deg);
+  }
+  .tee-face svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 12px 25px rgba(0,0,0,0.5));
+  }
+
+  /* Tap-to-flip hint indicator */
+  .tee-flip-hint {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    background: rgba(0,0,0,0.55);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--cream);
+    pointer-events: none;
+    z-index: 5;
+    transition: opacity 0.3s;
+  }
+
+  /* Card meta below the tee */
+  .tee-meta {
+    margin-top: 14px;
+    text-align: center;
+    padding: 0 6px;
+  }
+  .tee-name {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 2px;
+    color: var(--cream);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .tee-price {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+  }
+  .tee-price .strike {
+    color: rgba(250, 244, 232, 0.4);
+    text-decoration: line-through;
+    text-decoration-color: #ff2e2e;
+  }
+  .tee-price .sold {
+    color: #ff5555;
+    font-weight: 700;
+  }
+  .tee-price .sale {
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-shadow: 0 0 8px rgba(255, 230, 0, 0.4);
+  }
+  .tee-price .sale-badge {
+    background: #22dd55;
+    color: #0a2010;
+    font-weight: 700;
+    font-size: 0.62rem;
+    letter-spacing: 1.5px;
+    padding: 2px 7px;
+    border-radius: 2px;
+    transform: rotate(-3deg);
+    box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4), 0 0 12px rgba(34, 221, 85, 0.5);
+    display: inline-block;
+  }
+  .tee-price .free {
+    background: #ff6b00;
+    color: #1a0a00;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    padding: 3px 10px;
+    border-radius: 2px;
+    transform: rotate(-2deg);
+    box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4), 0 0 14px rgba(255, 107, 0, 0.55);
+    display: inline-block;
+  }
+  .tee-disclaimer {
+    margin-top: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.62rem;
+    font-style: italic;
+    color: #ff6b00;
+    letter-spacing: 0.5px;
+    animation: disclaimerFlash 1.5s ease-in-out infinite;
+  }
+  @keyframes disclaimerFlash {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.3; }
+  }
+
+  /* Arrow buttons positioned outside the cards */
+  .merch-nav {
+    position: absolute;
+    top: calc(50% - 40px);
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--cream);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-family: serif;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    backdrop-filter: blur(6px);
+    padding-bottom: 2px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .merch-nav:hover {
+    background: rgba(255, 46, 136, 0.4);
+    border-color: var(--pink);
+  }
+  .merch-nav:active {
+    transform: translateY(-50%) scale(0.92);
+  }
+  .merch-nav.prev { left: 8px; }
+  .merch-nav.next { right: 8px; }
+
+  @media (max-width: 520px) {
+    .merch-nav {
+      width: 36px;
+      height: 36px;
+      font-size: 1.25rem;
+    }
+  }
+  .info {
+    max-width: 680px;
+    margin: 40px auto 0;
+    text-align: center;
+    padding: 30px 20px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    animation: fadeUp 0.8s ease-out 50.6s forwards;
+  }
+  .info h3 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 5px;
+    color: var(--pink);
+    margin-bottom: 14px;
+  }
+  .info p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(250,244,232,0.8);
+    margin-bottom: 10px;
+  }
+  .info p em {
+    color: var(--teal-soft);
+    font-style: italic;
+  }
+
+  footer {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    margin-top: 60px;
+    padding: 30px 20px 0;
+    opacity: 0;
+    animation: fadeUp 0.8s ease-out 50.9s forwards;
+  }
+  .footer-mark {
+    font-family: 'Alfa Slab One', serif;
+    font-size: 1.4rem;
+    letter-spacing: 4px;
+    background: linear-gradient(180deg, #ffffff 0%, #c0c0d0 50%, var(--pink-soft) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(1px 1px 0 var(--pink)) drop-shadow(-1px -1px 0 var(--teal));
+    margin-bottom: 6px;
+  }
+  .footer-est {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 5px;
+    color: var(--gold);
+    margin-bottom: 22px;
+  }
+  .footer-divider {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,230,0,0.6), transparent);
+    margin: 0 auto 14px;
+  }
+  .footer-feat {
+    font-family: 'Caveat', cursive;
+    font-size: 1rem;
+    color: rgba(250, 244, 232, 0.6);
+    font-weight: 500;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  .footer-roster {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 26px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 3px;
+  }
+  .footer-roster span {
+    display: inline-block;
+    position: relative;
+  }
+  .footer-roster span::after {
+    content: '·';
+    position: absolute;
+    right: -12px;
+    color: rgba(250,244,232,0.3);
+  }
+  .footer-roster span:last-child::after { display: none; }
+  .footer-roster .n1 { color: var(--pink-soft); }
+  .footer-roster .n2 { color: var(--gold); }
+  .footer-roster .n3 { color: var(--teal-soft); }
+  .footer-roster .n4 { color: var(--pink-soft); }
+  .footer-roster .n5 { color: var(--teal-soft); }
+  .footer-wink {
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    font-size: 0.82rem;
+    letter-spacing: 0.3px;
+    color: rgba(250,244,232,0.6);
+    font-weight: 400;
+    max-width: 420px;
+    margin: 0 auto 18px;
+    line-height: 1.5;
+  }
+  .footer-wink em {
+    color: var(--pink-soft);
+    font-style: italic;
+    font-weight: 600;
+  }
+  .footer-copy {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 0.62rem;
+    letter-spacing: 3px;
+    color: rgba(250,244,232,0.35);
+  }
+
+  .deco-star {
+    position: absolute;
+    color: var(--gold);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    animation: starIn 1s ease-out 45.6s forwards;
+  }
+  @keyframes starIn { to { opacity: 0.6; } }
+  .s1 { top: 8%; left: 5%; font-size: 1.4rem; transform: rotate(-15deg); }
+  .s2 { top: 12%; right: 6%; font-size: 1.1rem; color: var(--pink); transform: rotate(20deg); }
+  .s3 { top: 60%; left: 3%; font-size: 0.9rem; color: var(--teal); }
+  .s4 { top: 72%; right: 4%; font-size: 1.2rem; transform: rotate(-25deg); }
+  .s5 { top: 30%; right: 3%; font-size: 0.85rem; color: var(--pink); }
+
+  /* ==========================================================
+     SKIP INTRO BUTTON
+     ========================================================== */
+  .skip-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 10000;
+    padding: 10px 18px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(250, 244, 232, 0.3);
+    border-radius: 2px;
+    color: rgba(250, 244, 232, 0.7);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: all 0.2s ease;
+    pointer-events: auto;
+    opacity: 0;
+    animation: skipBtnIn 0.6s ease-out 2s forwards;
+  }
+  .skip-btn:hover {
+    background: rgba(255, 46, 136, 0.3);
+    border-color: var(--pink);
+    color: var(--cream);
+    text-shadow: 0 0 10px rgba(255, 46, 136, 0.6);
+  }
+  @keyframes skipBtnIn {
+    to { opacity: 0.85; }
+  }
+  /* Hide the skip button once the intro is done */
+  body:not(.intro-playing) .skip-btn {
+    display: none;
+  }
+</style>
+</head>
+<body class="intro-playing">
+
+<!-- ========== INTRO OVERLAY ========== -->
+<button class="skip-btn" onclick="skipIntro()">Skip Intro →</button>
+<div class="intro">
+  <div class="spotlight-flicker"></div>
+  <div class="intro-screen">
+
+    <!-- Opening narration -->
+    <div class="narration">
+      <!-- Group 1: the storybook opening (lines 1-4) -->
+      <div class="narration-group group-1">
+        <span class="narration-line l1">A story of courage.</span>
+        <span class="narration-line l2">A story of friendship.</span>
+        <span class="narration-line l3">A story of five people who needed a name&hellip;</span>
+        <span class="narration-line l4">and chose poorly.</span>
+      </div>
+      <!-- Group 2: the act break (lines 5-7) -->
+      <div class="narration-group group-2">
+        <span class="narration-line l5">Five members.</span>
+        <span class="narration-line l6">One acronym.</span>
+        <span class="narration-line l7">This is their story.</span>
+      </div>
+    </div>
+
+    <!-- Flash + shockwave + wordmark crash -->
+    <div class="flash"></div>
+    <div class="shockwave"></div>
+    <div class="shockwave teal"></div>
+    <div class="intro-wordmark">
+      <div class="intro-wordmark-main">NKOTB</div>
+      <div class="intro-wordmark-sub">DINNER CLUB</div>
+    </div>
+
+    <!-- "INTRODUCING..." title card -->
+    <div class="introducing">Introducing...</div>
+
+    <!-- Roll-call cards -->
+    <div class="rollcall">
+
+      <!-- Card 1: Nadia -->
+      <div class="rc-card rc-1">
+        <div class="rc-polaroid">
+          <div class="rc-descriptors">
+            <span class="d-tag">The Mysterious.</span>
+            <span class="d-tag">The Enigmatic.</span>
+            <span class="d-name">NADIA.</span>
+          </div>
+          <img src="images/nadia-yearbook.png" alt="Nadia" />
+        </div>
+      </div>
+
+      <!-- Card 2: Klaus -->
+      <div class="rc-card rc-2">
+        <div class="rc-polaroid">
+          <div class="rc-descriptors">
+            <span class="d-tag">The Muscle.</span>
+            <span class="d-tag">The Mustache.</span>
+            <span class="d-name">KLAUS.</span>
+          </div>
+          <img src="images/klaus-yearbook.png" alt="Klaus" />
+        </div>
+      </div>
+
+      <!-- Card 3: Olaf -->
+      <div class="rc-card rc-3">
+        <div class="rc-polaroid">
+          <div class="rc-descriptors">
+            <span class="d-tag">The Voice.</span>
+            <span class="d-tag">The Energy.</span>
+            <span class="d-name">OLAF.</span>
+          </div>
+          <img src="images/olaf-yearbook.png" alt="Olaf" />
+        </div>
+      </div>
+
+      <!-- Card 4: Tallulah -->
+      <div class="rc-card rc-4">
+        <div class="rc-polaroid">
+          <div class="rc-descriptors">
+            <span class="d-tag">The Rhythm.</span>
+            <span class="d-tag">The Moves.</span>
+            <span class="d-name">TALLULAH.</span>
+          </div>
+          <img src="images/tallulah-yearbook.png" alt="Tallulah" />
+        </div>
+      </div>
+
+      <!-- Card 5: Boris -->
+      <div class="rc-card rc-5">
+        <div class="rc-polaroid">
+          <div class="rc-descriptors">
+            <span class="d-tag">The Charm.</span>
+            <span class="d-tag">The Heartthrob.</span>
+            <span class="d-name">BORIS.</span>
+          </div>
+          <img src="images/boris-yearbook.png" alt="Boris" />
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- ========== MAIN PAGE (hidden behind intro until fadeout) ========== -->
+<div class="main-bg"></div>
+<div class="main-stars"></div>
+
+<span class="deco-star s1">✦</span>
+<span class="deco-star s2">★</span>
+<span class="deco-star s3">✧</span>
+<span class="deco-star s4">✦</span>
+<span class="deco-star s5">★</span>
+
+<div class="wrap">
+
+  <div class="kicker">
+    <div class="kicker-pill">
+      <span class="dot"></span>OTTAWA · EST. 2026<span class="dot"></span>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="wordmark-wrap">
+      <h1 class="wordmark">NKOTB</h1>
+      <span class="wordmark-scribble" aria-hidden="true">
+        <span class="scribble-s">(s)</span>
+        <svg class="scribble-arrow" viewBox="0 0 40 50" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 6 42 C 14 36, 22 28, 26 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M 20 16 L 26 10 L 30 18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </div>
+    <div class="wordmark-sub">DINNER CLUB</div>
+  </div>
+
+  <div class="construction-banner" role="status" aria-label="Site under construction">
+    <div class="construction-banner-inner">
+      <span class="rivet bl"></span>
+      <span class="rivet br"></span>
+      <div class="construction-kicker">— NKOTB DINNER CLUB —</div>
+      <div class="construction-main"><em>Please Wait</em></div>
+      <div class="construction-main">To Be Seated</div>
+      <div class="construction-sub-line">your maître d' will be with you shortly</div>
+    </div>
+  </div>
+
+  <div class="tableready">
+    <div class="tableready-kicker">★ A NOTE FROM THE MAÎTRE D' ★</div>
+    <h2 class="tableready-headline">
+      Your table is<br>
+      <em>almost ready</em>...
+    </h2>
+    <p class="tableready-sub">
+      The band is still in soundcheck. Please have patience.<br>
+      (Not affiliated with <em>the other NKOTB</em>.)
+    </p>
+  </div>
+
+  <div class="poster-section">
+    <div class="poster">
+      <div class="poster-staple tl"></div>
+      <div class="poster-staple tr"></div>
+
+      <div class="poster-tourname">THE INAUGURAL 2026 TOUR</div>
+
+      <div class="poster-kicker">
+        <span class="star">★</span>NEXT TOUR STOP<span class="star">★</span>
+      </div>
+
+      <div class="poster-date">
+        <div class="poster-month">MAY</div>
+        <h2 class="poster-day">07</h2>
+        <div class="poster-year">2026</div>
+      </div>
+
+      <div class="poster-venue">
+        <span class="poster-venue-split">
+          <span class="half-pink">VENUE</span><span class="half-teal">TBA</span>
+        </span>
+      </div>
+      <div class="poster-city">
+        <span class="poster-guest-label"><span class="star star-pink">★</span><span class="star star-teal">★</span>WITH SPECIAL GUEST<span class="star star-gold">★</span><span class="star star-pink">★</span></span>
+        <span class="poster-guest-name">
+          <img src="images/kim-mitchell-logo.png" alt="Kim Mitchell" />
+        </span>
+      </div>
+
+      <div class="poster-divider">THE HEADLINERS</div>
+
+      <div class="lineup">
+
+        <div class="seat">
+          <span class="seat-tape"></span>
+          <img src="images/nadia-yearbook.png" alt="Nadia" />
+          <div class="seat-name">Nadia</div>
+        </div>
+
+        <div class="seat">
+          <span class="seat-tape"></span>
+          <img src="images/klaus-yearbook.png" alt="Klaus" />
+          <div class="seat-name">Klaus</div>
+        </div>
+
+        <div class="seat">
+          <span class="seat-tape"></span>
+          <img src="images/olaf-yearbook.png" alt="Olaf" />
+          <div class="seat-name">Olaf</div>
+        </div>
+
+        <div class="seat">
+          <span class="seat-tape"></span>
+          <img src="images/tallulah-yearbook.png" alt="Tallulah" />
+          <div class="seat-name">Tallulah</div>
+        </div>
+
+        <div class="seat">
+          <span class="seat-tape"></span>
+          <img src="images/boris-yearbook.png" alt="Boris" />
+          <div class="seat-name">Boris</div>
+        </div>
+
+      </div>
+
+      <div class="poster-footer">
+        <strong>PARTY OF FIVE</strong> &nbsp;·&nbsp; DOORS OPEN WHEN WE SAY THEY DO! &nbsp;·&nbsp; <span style="color: var(--teal);">RSVP REQUIRED</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================ FAKE MERCH SECTION ================ -->
+  <section class="merch-section" id="merch">
+    <div class="merch-header">
+      <div class="merch-kicker">★ OFFICIAL MERCH ★</div>
+      <h3 class="merch-title">The 2026 Collection</h3>
+      <p class="merch-sub">Nine pieces. None for sale. All extremely cool.</p>
+      <div class="merch-hint">TAP A TEE TO FLIP IT</div>
+    </div>
+
+    <div class="merch-gallery-wrap">
+      <button class="merch-nav prev" aria-label="Scroll left">‹</button>
+      <button class="merch-nav next" aria-label="Scroll right">›</button>
+      <div class="merch-gallery" id="merch-gallery">
+        <div class="tee-card" data-tee="tour-teal" data-color="teal" data-index="0">
+          <div class="tee-card-inner">
+            <div class="tee-face front">
+              <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="chrome-tt" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#e8e8f0"/>
+      <stop offset="50%" stop-color="#7a8a9a"/>
+      <stop offset="52%" stop-color="#ffffff"/>
+      <stop offset="72%" stop-color="#ffd6ea"/>
+      <stop offset="100%" stop-color="#ff88c8"/>
+    </linearGradient>
+  </defs>
+  <path d="M 100 70 L 160 45 Q 200 72 240 45 L 300 70 L 380 115 Q 365 140 325 155 L 325 440 Q 200 450 75 440 L 75 155 Q 35 140 20 115 L 100 70 Z" fill="#00b8dd" stroke="#0098bc" stroke-width="2"/>
+  <path d="M 160 45 Q 200 72 240 45" fill="none" stroke="#0098bc" stroke-width="3"/>
+  <text x="200" y="205" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="44" letter-spacing="2" fill="url(#chrome-tt)" style="filter: drop-shadow(3px 3px 0 #ff2e88) drop-shadow(-2px -2px 0 #00d4ff);">NKOTB</text>
+  <text x="200" y="240" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="14" letter-spacing="4" fill="#ff88c8">DINNER CLUB</text>
+  <text x="200" y="270" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="9" letter-spacing="2" font-weight="700" fill="#ffe600" opacity="0.85">★ OTTAWA · EST. 2026 ★</text>
+</svg>
+            </div>
+            <div class="tee-face back">
+              <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 100 70 L 160 45 Q 200 72 240 45 L 300 70 L 380 115 Q 365 140 325 155 L 325 440 Q 200 450 75 440 L 75 155 Q 35 140 20 115 L 100 70 Z" fill="#00b8dd" stroke="#0098bc" stroke-width="2"/>
+  <path d="M 160 45 Q 200 58 240 45" fill="none" stroke="#0098bc" stroke-width="3"/>
+  <text x="200" y="135" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="18" letter-spacing="2" fill="#ffe600">THE 2026</text>
+  <text x="200" y="163" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="18" letter-spacing="3" fill="#ffe600">WORLD TOUR</text>
+  <line x1="110" y1="185" x2="290" y2="185" stroke="#ffe600" stroke-width="1.5" opacity="0.6"/>
+  <text x="100" y="220" font-family="'Oswald', sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#faf4e8">APR 09</text>
+  <text x="170" y="220" font-family="'Oswald', sans-serif" font-size="11" letter-spacing="0.5" fill="#faf4e8">CARLETON PL, ON</text>
+  <text x="100" y="250" font-family="'Oswald', sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#faf4e8">MAY 07</text>
+  <text x="170" y="250" font-family="'Oswald', sans-serif" font-size="11" letter-spacing="0.5" fill="#faf4e8">OTTAWA, ON</text>
+  <text x="100" y="280" font-family="'Oswald', sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#faf4e8">???</text>
+  <text x="170" y="280" font-family="'Oswald', sans-serif" font-size="11" letter-spacing="0.5" fill="#faf4e8">KINGSTON, ON???</text>
+  <line x1="110" y1="315" x2="290" y2="315" stroke="#ffe600" stroke-width="1.5" opacity="0.6"/>
+  <text x="200" y="340" text-anchor="middle" font-family="'Caveat', cursive" font-weight="700" font-size="15" fill="#ff88c8">more dates coming...</text>
+  <text x="200" y="380" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="8" letter-spacing="2" font-weight="700" fill="#ffe600" opacity="0.75">★ NKOTB DINNER CLUB ★</text>
+</svg>
+            </div>
+            <div class="tee-flip-hint" aria-hidden="true">↺</div>
+          </div>
+          <div class="tee-meta">
+            <div class="tee-name">2026 Tour Tee · Teal</div>
+            <div class="tee-price">
+              <span class="strike">$45</span>
+              <span class="sold">SOLD OUT</span>
+            </div>
+          </div>
+        </div>
+        <div class="tee-card" data-tee="tour-pink" data-color="pink" data-index="1">
+          <div class="tee-card-inner">
+            <div class="tee-face front">
+              <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="chrome-tp" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#e8e8f0"/>
+      <stop offset="50%" stop-color="#7a8a9a"/>
+      <stop offset="52%" stop-color="#ffffff"/>
+      <stop offset="72%" stop-color="#ffd6ea"/>
+      <stop offset="100%" stop-color="#ff88c8"/>
+    </linearGradient>
+  </defs>
+  <path d="M 100 70 L 160 45 Q 200 72 240 45 L 300 70 L 380 115 Q 365 140 325 155 L 325 440 Q 200 450 75 440 L 75 155 Q 35 140 20 115 L 100 70 Z" fill="#ff2e88" stroke="#c41f6c" stroke-width="2"/>
+  <path d="M 160 45 Q 200 72 240 45" fill="none" stroke="#c41f6c" stroke-width="3"/>
+  <text x="200" y="205" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="44" letter-spacing="2" fill="url(#chrome-tp)" style="filter: drop-shadow(3px 3px 0 #00d4ff) drop-shadow(-2px -2px 0 #ffe600);">NKOTB</text>
+  <text x="200" y="240" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="14" letter-spacing="4" fill="#7aeaff">DINNER CLUB</text>
+  <text x="200" y="270" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="9" letter-spacing="2" font-weight="700" fill="#ffe600" opacity="1">★ OTTAWA · EST. 2026 ★</text>
+</svg>
+            </div>
+            <div class="tee-face back">
+              <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 100 70 L 160 45 Q 200 72 240 45 L 300 70 L 380 115 Q 365 140 325 155 L 325 440 Q 200 450 75 440 L 75 155 Q 35 140 20 115 L 100 70 Z" fill="#ff2e88" stroke="#c41f6c" stroke-width="2"/>
+  <path d="M 160 45 Q 200 58 240 45" fill="none" stroke="#c41f6c" stroke-width="3"/>
+  <text x="200" y="135" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="18" letter-spacing="2" fill="#ffe600">THE 2026</text>
+  <text x="200" y="163" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="18" letter-spacing="3" fill="#ffe600">WORLD TOUR</text>
+  <line x1="110" y1="185" x2="290" y2="185" stroke="#ffe600" stroke-width="1.5" opacity="0.6"/>
+  <text x="100" y="220" font-family="'Oswald', sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#faf4e8">APR 09</text>
+  <text x="170" y="220" font-family="'Oswald', sans-serif" font-size="11" letter-spacing="0.5" fill="#faf4e8">CARLETON PL, ON</text>
+  <text x="100" y="250" font-family="'Oswald', sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#faf4e8">MAY 07</text>
+  <text x="170" y="250" font-family="'Oswald', sans-serif" font-size="11" letter-spacing="0.5" fill="#faf4e8">OTTAWA, ON</text>
+  <text x="100" y="280" font-family="'Oswald', sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#faf4e8">???</text>
+  <text x="170" y="280" font-family="'Oswald', sans-serif" font-size="11" letter-spacing="0.5" fill="#faf4e8">KINGSTON, ON???</text>
+  <line x1="110" y1="315" x2="290" y2="315" stroke="#ffe600" stroke-width="1.5" opacity="0.6"/>
+  <text x="200" y="340" text-anchor="middle" font-family="'Caveat', cursive" font-weight="700" font-size="15" fill="#7aeaff">more dates coming...</text>
+  <text x="200" y="380" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="8" letter-spacing="2" font-weight="700" fill="#ffe600" opacity="0.75">★ NKOTB DINNER CLUB ★</text>
+</svg>
+            </div>
+            <div class="tee-flip-hint" aria-hidden="true">↺</div>
+          </div>
+          <div class="tee-meta">
+            <div class="tee-name">2026 Tour Tee · Pink</div>
+            <div class="tee-price">
+              <span class="strike">$45</span>
+              <span class="sold">SOLD OUT</span>
+            </div>
+          </div>
+        </div>
+        <div class="tee-card" data-tee="tour-yellow" data-color="yellow" data-index="2">
+          <div class="tee-card-inner">
+            <div class="tee-face front">
+              <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="#0f0f14" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#e8e8f0"/>
+      <stop offset="50%" stop-color="#7a8a9a"/>
+      <stop offset="52%" stop-color="#ffffff"/>
+      <stop offset="72%" stop-color="#ffd6ea"/>
+      <stop offset="100%" stop-color="#ff88c8"/>
+    </linearGradient>
+  </defs>
+  <path d="M 100 70 L 160 45 Q 200 72 240 45 L 300 70 L 380 115 Q 365 140 325 155 L 325 440 Q 200 450 75 440 L 75 155 Q 35 140 20 115 L 100 70 Z" fill="#ffe600" stroke="#d4bf00" stroke-width="2"/>
+  <path d="M 160 45 Q 200 72 240 45" fill="none" stroke="#d4bf00" stroke-width="3"/>
+  <text x="200" y="205" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="44" letter-spacing="2" fill="#0f0f14" style="filter: drop-shadow(3px 3px 0 #ff2e88) drop-shadow(-2px -2px 0 #00d4ff);">NKOTB</text>
+  <text x="200" y="240" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="14" letter-spacing="4" fill="#ff2e88">DINNER CLUB</text>
+  <text x="200" y="270" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="9" letter-spacing="2" font-weight="700" fill="#0f0f14" opacity="1">★ OTTAWA · EST. 2026 ★</text>
+</svg>
+            </div>
+            <div class="tee-face back">
+              <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 100 70 L 160 45 Q 200 72 240 45 L 300 70 L 380 115 Q 365 140 325 155 L 325 440 Q 200 450 75 440 L 75 155 Q 35 140 20 115 L 100 70 Z" fill="#ffe600" stroke="#d4bf00" stroke-width="2"/>
+  <path d="M 160 45 Q 200 58 240 45" fill="none" stroke="#d4bf00" stroke-width="3"/>
+  <text x="200" y="135" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="18" letter-spacing="2" fill="#0f0f14">THE 2026</text>
+  <text x="200" y="163" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="18" letter-spacing="3" fill="#0f0f14">WORLD TOUR</text>
+  <line x1="110" y1="185" x2="290" y2="185" stroke="#0f0f14" stroke-width="1.5" opacity="0.6"/>
+  <text x="100" y="220" font-family="'Oswald', sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#0f0f14">APR 09</text>
+  <text x="170" y="220" font-family="'Oswald', sans-serif" font-size="11" letter-spacing="0.5" fill="#0f0f14">CARLETON PL, ON</text>
+  <text x="100" y="250" font-family="'Oswald', sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#0f0f14">MAY 07</text>
+  <text x="170" y="250" font-family="'Oswald', sans-serif" font-size="11" letter-spacing="0.5" fill="#0f0f14">OTTAWA, ON</text>
+  <text x="100" y="280" font-family="'Oswald', sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#0f0f14">???</text>
+  <text x="170" y="280" font-family="'Oswald', sans-serif" font-size="11" letter-spacing="0.5" fill="#0f0f14">KINGSTON, ON???</text>
+  <line x1="110" y1="315" x2="290" y2="315" stroke="#0f0f14" stroke-width="1.5" opacity="0.6"/>
+  <text x="200" y="340" text-anchor="middle" font-family="'Caveat', cursive" font-weight="700" font-size="15" fill="#ff2e88">more dates coming...</text>
+  <text x="200" y="380" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="8" letter-spacing="2" font-weight="700" fill="#0f0f14" opacity="0.75">★ NKOTB DINNER CLUB ★</text>
+</svg>
+            </div>
+            <div class="tee-flip-hint" aria-hidden="true">↺</div>
+          </div>
+          <div class="tee-meta">
+            <div class="tee-name">2026 Tour Tee · Yellow</div>
+            <div class="tee-price">
+              <span class="strike">$45</span>
+              <span class="sold">SOLD OUT</span>
+            </div>
+          </div>
+        </div>
+        <div class="tee-card" data-tee="char-nadia" data-color="cream" data-index="3">
+          <div class="tee-card-inner">
+            <div class="tee-face front">
+              <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 100 70 L 160 45 Q 200 72 240 45 L 300 70 L 380 115 Q 365 140 325 155 L 325 440 Q 200 450 75 440 L 75 155 Q 35 140 20 115 L 100 70 Z" fill="#faf4e8" stroke="#d4cdb5" stroke-width="2"/>
+  <path d="M 160 45 Q 200 72 240 45" fill="none" stroke="#d4cdb5" stroke-width="3"/>
+  <image href="images/nadia-cutout.png" x="100" y="100" width="200" height="220" preserveAspectRatio="xMidYMid meet"/>
+  <text x="200" y="360" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="22" letter-spacing="3" fill="#0f0f14">★ NADIA ★</text>
+  <text x="200" y="390" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="9" letter-spacing="3" font-weight="700" fill="#ff2e88">NKOTB DINNER CLUB</text>
+</svg>
+            </div>
+            <div class="tee-face back">
+              <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 100 70 L 160 45 Q 200 72 240 45 L 300 70 L 380 115 Q 365 140 325 155 L 325 440 Q 200 450 75 440 L 75 155 Q 35 140 20 115 L 100 70 Z" fill="#faf4e8" stroke="#d4cdb5" stroke-width="2"/>
+  <path d="M 160 45 Q 200 58 240 45" fill="none" stroke="#d4cdb5" stroke-width="3"/>
+  <text x="200" y="180" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="14" letter-spacing="6" font-weight="700" fill="#ff2e88">★</text>
+  <text x="200" y="225" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="22" letter-spacing="2" fill="#0f0f14">THE MYSTERIOUS</text>
+  <line x1="130" y1="248" x2="270" y2="248" stroke="#0f0f14" stroke-width="1.5" opacity="0.4"/>
+  <text x="200" y="285" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="36" letter-spacing="4" fill="#ff2e88">NADIA</text>
+  <text x="200" y="320" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="14" letter-spacing="6" font-weight="700" fill="#ff2e88">★</text>
+  <text x="200" y="380" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="8" letter-spacing="2" font-weight="700" fill="#0f0f14" opacity="0.6">NKOTB DINNER CLUB · 2026 TOUR</text>
+</svg>
+            </div>
+            <div class="tee-flip-hint" aria-hidden="true">↺</div>
+          </div>
+          <div class="tee-meta">
+            <div class="tee-name">Nadia Tee · Cream</div>
+            <div class="tee-price">
+              <span class="strike">$35</span>
+              <span class="sold">SOLD OUT</span>
+            </div>
+          </div>
+        </div>
+        <div class="tee-card" data-tee="char-klaus" data-color="pink" data-index="4">
+          <div class="tee-card-inner">
+            <div class="tee-face front">
+              <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 100 70 L 160 45 Q 200 72 240 45 L 300 70 L 380 115 Q 365 140 325 155 L 325 440 Q 200 450 75 440 L 75 155 Q 35 140 20 115 L 100 70 Z" fill="#ff2e88" stroke="#c41f6c" stroke-width="2"/>
+  <path d="M 160 45 Q 200 72 240 45" fill="none" stroke="#c41f6c" stroke-width="3"/>
+  <image href="images/klaus-cutout.png" x="100" y="100" width="200" height="220" preserveAspectRatio="xMidYMid meet"/>
+  <text x="200" y="360" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="22" letter-spacing="3" fill="#faf4e8">★ KLAUS ★</text>
+  <text x="200" y="390" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="9" letter-spacing="3" font-weight="700" fill="#ffe600">NKOTB DINNER CLUB</text>
+</svg>
+            </div>
+            <div class="tee-face back">
+              <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 100 70 L 160 45 Q 200 72 240 45 L 300 70 L 380 115 Q 365 140 325 155 L 325 440 Q 200 450 75 440 L 75 155 Q 35 140 20 115 L 100 70 Z" fill="#ff2e88" stroke="#c41f6c" stroke-width="2"/>
+  <path d="M 160 45 Q 200 58 240 45" fill="none" stroke="#c41f6c" stroke-width="3"/>
+  <text x="200" y="180" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="14" letter-spacing="6" font-weight="700" fill="#ffe600">★</text>
+  <text x="200" y="225" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="22" letter-spacing="2" fill="#faf4e8">THE MUSCLE</text>
+  <line x1="130" y1="248" x2="270" y2="248" stroke="#faf4e8" stroke-width="1.5" opacity="0.4"/>
+  <text x="200" y="285" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="36" letter-spacing="4" fill="#ffe600">KLAUS</text>
+  <text x="200" y="320" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="14" letter-spacing="6" font-weight="700" fill="#ffe600">★</text>
+  <text x="200" y="380" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="8" letter-spacing="2" font-weight="700" fill="#faf4e8" opacity="0.6">NKOTB DINNER CLUB · 2026 TOUR</text>
+</svg>
+            </div>
+            <div class="tee-flip-hint" aria-hidden="true">↺</div>
+          </div>
+          <div class="tee-meta">
+            <div class="tee-name">Klaus Tee · Pink</div>
+            <div class="tee-price">
+              <span class="strike">$35</span>
+              <span class="sale">$3.99</span>
+              <span class="sale-badge">ON SALE</span>
+            </div>
+          </div>
+        </div>
+        <div class="tee-card" data-tee="char-olaf" data-color="teal" data-index="5">
+          <div class="tee-card-inner">
+            <div class="tee-face front">
+              <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 100 70 L 160 45 Q 200 72 240 45 L 300 70 L 380 115 Q 365 140 325 155 L 325 440 Q 200 450 75 440 L 75 155 Q 35 140 20 115 L 100 70 Z" fill="#00b8dd" stroke="#0098bc" stroke-width="2"/>
+  <path d="M 160 45 Q 200 72 240 45" fill="none" stroke="#0098bc" stroke-width="3"/>
+  <image href="images/olaf-cutout.png" x="100" y="100" width="200" height="220" preserveAspectRatio="xMidYMid meet"/>
+  <text x="200" y="360" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="22" letter-spacing="3" fill="#faf4e8">★ OLAF ★</text>
+  <text x="200" y="390" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="9" letter-spacing="3" font-weight="700" fill="#ffe600">NKOTB DINNER CLUB</text>
+</svg>
+            </div>
+            <div class="tee-face back">
+              <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 100 70 L 160 45 Q 200 72 240 45 L 300 70 L 380 115 Q 365 140 325 155 L 325 440 Q 200 450 75 440 L 75 155 Q 35 140 20 115 L 100 70 Z" fill="#00b8dd" stroke="#0098bc" stroke-width="2"/>
+  <path d="M 160 45 Q 200 58 240 45" fill="none" stroke="#0098bc" stroke-width="3"/>
+  <text x="200" y="180" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="14" letter-spacing="6" font-weight="700" fill="#ffe600">★</text>
+  <text x="200" y="225" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="22" letter-spacing="2" fill="#faf4e8">THE VOICE</text>
+  <line x1="130" y1="248" x2="270" y2="248" stroke="#faf4e8" stroke-width="1.5" opacity="0.4"/>
+  <text x="200" y="285" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="36" letter-spacing="4" fill="#ffe600">OLAF</text>
+  <text x="200" y="320" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="14" letter-spacing="6" font-weight="700" fill="#ffe600">★</text>
+  <text x="200" y="380" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="8" letter-spacing="2" font-weight="700" fill="#faf4e8" opacity="0.6">NKOTB DINNER CLUB · 2026 TOUR</text>
+</svg>
+            </div>
+            <div class="tee-flip-hint" aria-hidden="true">↺</div>
+          </div>
+          <div class="tee-meta">
+            <div class="tee-name">Olaf Tee · Teal</div>
+            <div class="tee-price">
+              <span class="strike">$35</span>
+              <span class="sold">SOLD OUT</span>
+            </div>
+          </div>
+        </div>
+        <div class="tee-card" data-tee="char-tallulah" data-color="yellow" data-index="6">
+          <div class="tee-card-inner">
+            <div class="tee-face front">
+              <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 100 70 L 160 45 Q 200 72 240 45 L 300 70 L 380 115 Q 365 140 325 155 L 325 440 Q 200 450 75 440 L 75 155 Q 35 140 20 115 L 100 70 Z" fill="#ffe600" stroke="#d4bf00" stroke-width="2"/>
+  <path d="M 160 45 Q 200 72 240 45" fill="none" stroke="#d4bf00" stroke-width="3"/>
+  <image href="images/tallulah-cutout.png" x="100" y="100" width="200" height="220" preserveAspectRatio="xMidYMid meet"/>
+  <text x="200" y="360" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="22" letter-spacing="3" fill="#0f0f14">★ TALLULAH ★</text>
+  <text x="200" y="390" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="9" letter-spacing="3" font-weight="700" fill="#ff2e88">NKOTB DINNER CLUB</text>
+</svg>
+            </div>
+            <div class="tee-face back">
+              <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 100 70 L 160 45 Q 200 72 240 45 L 300 70 L 380 115 Q 365 140 325 155 L 325 440 Q 200 450 75 440 L 75 155 Q 35 140 20 115 L 100 70 Z" fill="#ffe600" stroke="#d4bf00" stroke-width="2"/>
+  <path d="M 160 45 Q 200 58 240 45" fill="none" stroke="#d4bf00" stroke-width="3"/>
+  <text x="200" y="180" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="14" letter-spacing="6" font-weight="700" fill="#ff2e88">★</text>
+  <text x="200" y="225" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="22" letter-spacing="2" fill="#0f0f14">THE RHYTHM</text>
+  <line x1="130" y1="248" x2="270" y2="248" stroke="#0f0f14" stroke-width="1.5" opacity="0.4"/>
+  <text x="200" y="285" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="36" letter-spacing="4" fill="#ff2e88">TALLULAH</text>
+  <text x="200" y="320" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="14" letter-spacing="6" font-weight="700" fill="#ff2e88">★</text>
+  <text x="200" y="380" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="8" letter-spacing="2" font-weight="700" fill="#0f0f14" opacity="0.6">NKOTB DINNER CLUB · 2026 TOUR</text>
+</svg>
+            </div>
+            <div class="tee-flip-hint" aria-hidden="true">↺</div>
+          </div>
+          <div class="tee-meta">
+            <div class="tee-name">Tallulah Tee · Yellow</div>
+            <div class="tee-price">
+              <span class="strike">$35</span>
+              <span class="sold">SOLD OUT</span>
+            </div>
+          </div>
+        </div>
+        <div class="tee-card" data-tee="char-boris" data-color="cream" data-index="7">
+          <div class="tee-card-inner">
+            <div class="tee-face front">
+              <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 100 70 L 160 45 Q 200 72 240 45 L 300 70 L 380 115 Q 365 140 325 155 L 325 440 Q 200 450 75 440 L 75 155 Q 35 140 20 115 L 100 70 Z" fill="#faf4e8" stroke="#d4cdb5" stroke-width="2"/>
+  <path d="M 160 45 Q 200 72 240 45" fill="none" stroke="#d4cdb5" stroke-width="3"/>
+  <image href="images/boris-cutout.png" x="100" y="100" width="200" height="220" preserveAspectRatio="xMidYMid meet"/>
+  <text x="200" y="360" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="22" letter-spacing="3" fill="#0f0f14">★ BORIS ★</text>
+  <text x="200" y="390" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="9" letter-spacing="3" font-weight="700" fill="#00d4ff">NKOTB DINNER CLUB</text>
+</svg>
+            </div>
+            <div class="tee-face back">
+              <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 100 70 L 160 45 Q 200 72 240 45 L 300 70 L 380 115 Q 365 140 325 155 L 325 440 Q 200 450 75 440 L 75 155 Q 35 140 20 115 L 100 70 Z" fill="#faf4e8" stroke="#d4cdb5" stroke-width="2"/>
+  <path d="M 160 45 Q 200 58 240 45" fill="none" stroke="#d4cdb5" stroke-width="3"/>
+  <text x="200" y="180" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="14" letter-spacing="6" font-weight="700" fill="#00d4ff">★</text>
+  <text x="200" y="225" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="22" letter-spacing="2" fill="#0f0f14">THE CHARM</text>
+  <line x1="130" y1="248" x2="270" y2="248" stroke="#0f0f14" stroke-width="1.5" opacity="0.4"/>
+  <text x="200" y="285" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="36" letter-spacing="4" fill="#00d4ff">BORIS</text>
+  <text x="200" y="320" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="14" letter-spacing="6" font-weight="700" fill="#00d4ff">★</text>
+  <text x="200" y="380" text-anchor="middle" font-family="'Oswald', sans-serif" font-size="8" letter-spacing="2" font-weight="700" fill="#0f0f14" opacity="0.6">NKOTB DINNER CLUB · 2026 TOUR</text>
+</svg>
+            </div>
+            <div class="tee-flip-hint" aria-hidden="true">↺</div>
+          </div>
+          <div class="tee-meta">
+            <div class="tee-name">Boris Tee · Cream</div>
+            <div class="tee-price">
+              <span class="strike">$35</span>
+              <span class="sold">SOLD OUT</span>
+            </div>
+          </div>
+        </div>
+        <div class="tee-card" data-tee="kim-mitchell" data-color="navy" data-index="8">
+          <div class="tee-card-inner">
+            <div class="tee-face front">
+              <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 100 70 L 160 45 Q 200 72 240 45 L 300 70 L 380 115 Q 365 140 325 155 L 325 440 Q 200 450 75 440 L 75 155 Q 35 140 20 115 L 100 70 Z" fill="#1a1f3a" stroke="#0d1228" stroke-width="2"/>
+  <path d="M 160 45 Q 200 72 240 45" fill="none" stroke="#0d1228" stroke-width="3"/>
+  <image href="images/kim-mitchell-logo.png" x="85" y="90" width="230" height="200" preserveAspectRatio="xMidYMid meet"/>
+</svg>
+            </div>
+            <div class="tee-face back">
+              <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 100 70 L 160 45 Q 200 72 240 45 L 300 70 L 380 115 Q 365 140 325 155 L 325 440 Q 200 450 75 440 L 75 155 Q 35 140 20 115 L 100 70 Z" fill="#1a1f3a" stroke="#0d1228" stroke-width="2"/>
+  <path d="M 160 45 Q 200 58 240 45" fill="none" stroke="#0d1228" stroke-width="3"/>
+  <text x="200" y="190" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="26" letter-spacing="1" fill="#dd2222">REMEMBER</text>
+  <text x="200" y="230" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="22" letter-spacing="0" fill="#faf4e8">PATIO LANTERNS</text>
+  <text x="200" y="280" text-anchor="middle" font-family="'Alfa Slab One', serif" font-size="44" letter-spacing="2" fill="#dd2222">?!?</text>
+</svg>
+            </div>
+            <div class="tee-flip-hint" aria-hidden="true">↺</div>
+          </div>
+          <div class="tee-meta">
+            <div class="tee-name">Kim Mitchell · Opening Act Tee</div>
+            <div class="tee-price">
+              <span class="strike">$40</span>
+              <span class="free">FREE</span>
+            </div>
+            <div class="tee-disclaimer">*may contain asbestos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="info">
+    <h3>★ WHAT IS THIS ★</h3>
+    <p>
+      The NKOTB Dinner Club is a five-member Ottawa restaurant-dining society founded April 9, 2026.
+    </p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-mark">NKOTB</div>
+  <div class="footer-est">OTTAWA · EST. 2026</div>
+  <div class="footer-divider"></div>
+  <div class="footer-feat">featuring, in order of appearance:</div>
+  <div class="footer-roster">
+    <span class="n1">NADIA</span>
+    <span class="n2">KLAUS</span>
+    <span class="n3">OLAF</span>
+    <span class="n4">TALLULAH</span>
+    <span class="n5">BORIS</span>
+  </div>
+  <div class="footer-wink">Not affiliated with <em>Donnie, Danny, Joey, Jordan, or Jonathan.</em></div>
+  <div class="footer-copy">© 2026 NKOTB DINNER CLUB, LLC · ALL WRONGS RESERVED</div>
+</footer>
+
+<script>
+  // Final transform for each seat (matches the end state of seatDrop-N keyframes)
+  const SEAT_FINAL_TRANSFORMS = [
+    'rotate(-4deg)',
+    'rotate(2deg) translateY(-4px)',
+    'rotate(-1deg) translateY(-8px)',
+    'rotate(3deg) translateY(-2px)',
+    'rotate(-3deg)'
+  ];
+
+  function finalizeSeat(seat, i) {
+    seat.style.animation = 'none';
+    seat.style.transition = 'none';
+    seat.style.opacity = '1';
+    seat.style.transform = SEAT_FINAL_TRANSFORMS[i] || '';
+  }
+
+  // Lock each seat's final state the moment its own drop-in animation ends.
+  // This prevents iOS Safari from re-evaluating computed styles on tap and
+  // briefly snapping the card back to the animation's initial off-screen state.
+  document.querySelectorAll('.lineup .seat').forEach((seat, i) => {
+    seat.addEventListener('animationend', () => finalizeSeat(seat, i), { once: true });
+  });
+
+  function finalizeAllSeats() {
+    document.querySelectorAll('.lineup .seat').forEach((seat, i) => finalizeSeat(seat, i));
+  }
+
+  // Auto-unlock scrolling + finalize any still-unfinalized seats after intro (~45s)
+  const autoUnlockTimer = setTimeout(() => {
+    document.body.classList.remove('intro-playing');
+    finalizeAllSeats();
+  }, 45500);
+
+  // Manual skip — fast-forward all animations to final state
+  function skipIntro() {
+    clearTimeout(autoUnlockTimer);
+
+    const intro = document.querySelector('.intro');
+    if (intro) {
+      intro.style.transition = 'opacity 0.4s ease-out';
+      intro.style.opacity = '0';
+      setTimeout(() => intro.style.display = 'none', 400);
+    }
+
+    const fastForwardStyle = document.createElement('style');
+    fastForwardStyle.textContent = `
+      .main-bg, .main-stars, .wrap, .hero, .kicker, .wordmark-sub,
+      .tableready-kicker, .tableready-headline, .tableready-sub,
+      .poster, .merch-section, .construction-banner, .info, footer, .deco-star {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .main-stars { opacity: 0.35 !important; }
+      .deco-star { opacity: 0.6 !important; }
+      .poster { transform: scale(1) rotate(-0.5deg) !important; }
+    `;
+    document.head.appendChild(fastForwardStyle);
+
+    document.body.classList.remove('intro-playing');
+    finalizeAllSeats();
+  }
+
+  // ============ MERCH GALLERY (scroll + flip + shuffle) ============
+  (function() {
+    const gallery = document.getElementById('merch-gallery');
+    if (!gallery) return;
+
+    const wrap = gallery.parentElement;
+    const prevBtn = wrap.querySelector('.merch-nav.prev');
+    const nextBtn = wrap.querySelector('.merch-nav.next');
+
+    // Shuffle the cards once on load (Fisher-Yates), then enforce no-adjacent-same-color
+    const cards = Array.from(gallery.querySelectorAll('.tee-card'));
+    for (let i = cards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [cards[i], cards[j]] = [cards[j], cards[i]];
+    }
+
+    // De-cluster same colors: walk left-to-right, if card matches previous, swap it with
+    // the nearest later card whose color differs from both its new neighbors.
+    function colorOf(c) { return c.dataset.color || ''; }
+    for (let i = 1; i < cards.length; i++) {
+      if (colorOf(cards[i]) !== colorOf(cards[i - 1])) continue;
+      // Find a later card we can swap with
+      let swapIdx = -1;
+      for (let k = i + 1; k < cards.length; k++) {
+        const nextColor = (i + 1 < cards.length) ? colorOf(cards[i + 1]) : '';
+        const prevOfK = colorOf(cards[k - 1]);
+        const afterK = (k + 1 < cards.length) ? colorOf(cards[k + 1]) : '';
+        // cards[k] goes to position i — must differ from cards[i-1] AND cards[i+1]
+        // cards[i] goes to position k — must differ from prevOfK AND afterK (if it's not i+1)
+        const ckCol = colorOf(cards[k]);
+        const ciCol = colorOf(cards[i]);
+        const posOK_for_k = ckCol !== colorOf(cards[i - 1]) && ckCol !== nextColor;
+        // When k === i+1, the "prevOfK" would become cards[i] after the swap, so skip that check
+        const effectivePrev = (k === i + 1) ? ckCol : prevOfK;
+        const posOK_for_i = ciCol !== effectivePrev && ciCol !== afterK;
+        if (posOK_for_k && posOK_for_i) { swapIdx = k; break; }
+      }
+      if (swapIdx > -1) {
+        [cards[i], cards[swapIdx]] = [cards[swapIdx], cards[i]];
+      }
+      // If no valid swap found, accept the collision (rare edge case with heavy color constraints)
+    }
+
+    cards.forEach(card => gallery.appendChild(card));
+
+    // Arrow scrolling — scroll by approx one tee width, with wrap-around
+    function scrollByCard(direction) {
+      const cards = Array.from(gallery.querySelectorAll('.tee-card'));
+      if (cards.length === 0) return;
+
+      // Find the card whose center is closest to the gallery's viewport center
+      const galleryRect = gallery.getBoundingClientRect();
+      const galleryCenter = galleryRect.left + galleryRect.width / 2;
+      let closestIdx = 0;
+      let closestDist = Infinity;
+      cards.forEach((card, i) => {
+        const r = card.getBoundingClientRect();
+        const dist = Math.abs((r.left + r.width / 2) - galleryCenter);
+        if (dist < closestDist) {
+          closestDist = dist;
+          closestIdx = i;
+        }
+      });
+
+      // Compute target with wrap-around
+      let targetIdx = closestIdx + direction;
+      if (targetIdx >= cards.length) targetIdx = 0;
+      if (targetIdx < 0) targetIdx = cards.length - 1;
+
+      // Scroll the target card into the center of the gallery
+      cards[targetIdx].scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center'
+      });
+    }
+    prevBtn.addEventListener('click', () => scrollByCard(-1));
+    nextBtn.addEventListener('click', () => scrollByCard(1));
+
+    // Tap a tee to flip it
+    gallery.querySelectorAll('.tee-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        card.classList.toggle('flipped');
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>

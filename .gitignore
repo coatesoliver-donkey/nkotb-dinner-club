@@ -1,0 +1,15 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Python (in case you add build scripts later)
+__pycache__/
+*.pyc
+.venv/
+venv/
